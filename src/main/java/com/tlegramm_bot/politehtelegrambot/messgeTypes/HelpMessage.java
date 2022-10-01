@@ -10,7 +10,6 @@ public class HelpMessage {
 
     public SendMessage sendHelpMsg(String chatId, Integer messageId) {
         SendMessage message_to_be_sent = new SendMessage();
-        //message_to_be_sent.enableMarkdown(true);
         message_to_be_sent.setChatId(chatId);
         message_to_be_sent.setReplyToMessageId(messageId);
         message_to_be_sent.setText("text_message");
