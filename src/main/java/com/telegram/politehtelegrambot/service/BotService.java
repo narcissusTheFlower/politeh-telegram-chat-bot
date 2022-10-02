@@ -3,6 +3,7 @@ package com.telegram.politehtelegrambot.service;
 
 import com.telegram.politehtelegrambot.messgeTypes.HelpMessage;
 import com.telegram.politehtelegrambot.messgeTypes.InfoMessage;
+import com.telegram.politehtelegrambot.messgeTypes.StudyPlanMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -14,17 +15,21 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 public class BotService extends TelegramLongPollingBot {
 
 
-
+    private StudyPlanMessage studyPlanMessage;
     private HelpMessage helpMessage;
     private InfoMessage infoMessage;
     private BotConfig botConfig;
-
     @Autowired
-    public BotService(HelpMessage helpMessage, InfoMessage infoMessage, BotConfig botConfig) {
+    public BotService(StudyPlanMessage studyPlanMessage,
+                      HelpMessage helpMessage,
+                      InfoMessage infoMessage,
+                      BotConfig botConfig) {
+        this.studyPlanMessage = studyPlanMessage;
         this.helpMessage = helpMessage;
         this.infoMessage = infoMessage;
         this.botConfig = botConfig;
     }
+
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -45,7 +50,7 @@ public class BotService extends TelegramLongPollingBot {
 
                         break;
                     case "/plan":
-
+                        execute(studyPlanMessage.sendPhotoPlanMsg(setChatId));
                         break;
                     case "/subjects":
 
