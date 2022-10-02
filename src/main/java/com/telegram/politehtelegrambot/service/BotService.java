@@ -1,11 +1,9 @@
-package com.tlegramm_bot.politehtelegrambot.service;
+package com.telegram.politehtelegrambot.service;
 
 
-import com.tlegramm_bot.politehtelegrambot.messgeTypes.HelpMessage;
-import com.tlegramm_bot.politehtelegrambot.messgeTypes.MsgSender;
+import com.telegram.politehtelegrambot.messgeTypes.HelpMessage;
+import com.telegram.politehtelegrambot.messgeTypes.InfoMessage;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -13,17 +11,18 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
-public class Bot extends TelegramLongPollingBot {
+public class BotService extends TelegramLongPollingBot {
 
 
-    private MsgSender msgSender;
+
     private HelpMessage helpMessage;
+    private InfoMessage infoMessage;
     private BotConfig botConfig;
 
     @Autowired
-    public Bot(MsgSender msgSender, HelpMessage helpMessage, BotConfig botConfig) {
-        this.msgSender = msgSender;
+    public BotService(HelpMessage helpMessage, InfoMessage infoMessage, BotConfig botConfig) {
         this.helpMessage = helpMessage;
+        this.infoMessage = infoMessage;
         this.botConfig = botConfig;
     }
 
@@ -32,22 +31,31 @@ public class Bot extends TelegramLongPollingBot {
         Message incoming_message = update.getMessage();
         if (incoming_message != null && incoming_message.hasText()) {
             String command = incoming_message.getText();
-            String chatId = incoming_message.getChatId().toString();
-            Integer messageId = incoming_message.getMessageId();
+            String setChatId = incoming_message.getChatId().toString();
 
             try {
                 switch (command) {
                     case "/help":
-                        execute(helpMessage.sendHelpMsg(chatId, messageId));
+                        execute(helpMessage.sendHelpMsg(setChatId));
                         break;
-                    case "/start":
+                    case "/info":
+                        execute(infoMessage.sendInfoMsg(setChatId));
+                        break;
+                    case "/teachers":
 
                         break;
-                    case "/quote":
+                    case "/plan":
 
-                    default:
+                        break;
+                    case "/subjects":
 
+                        break;
+                    case "/deadlines":
 
+                        break;
+                    case "/vk":
+
+                        break;
                 }
             }catch (TelegramApiException e){
                 e.printStackTrace();

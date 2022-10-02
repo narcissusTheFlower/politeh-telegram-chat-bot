@@ -1,4 +1,4 @@
-package com.tlegramm_bot.politehtelegrambot.service;
+package com.telegram.politehtelegrambot.service;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;

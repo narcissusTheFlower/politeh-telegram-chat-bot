@@ -1,10 +1,10 @@
-package com.tlegramm_bot.politehtelegrambot;
+package com.telegram.politehtelegrambot;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PolitehTelegramBotApplicationTests {
+class PolitehTelegramBotApplicationTestsService {
 
     @Test
     void contextLoads() {
