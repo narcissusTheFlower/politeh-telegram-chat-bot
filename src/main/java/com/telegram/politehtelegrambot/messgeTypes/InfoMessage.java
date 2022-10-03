@@ -6,11 +6,11 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 @Component
 public class InfoMessage {
 
-
     private final String info =
             "Университет: ФГАО ВО \"СПбПУ\";\n" +
                     "Учебное подразделение: Институт компьютерных наук и технологий;\n" +
                     "Направление подготовки: 09.03.02 Информационные системы и технологии;\n" +
+                    "Руководитель образовательной программы: Ефремов Артём Александрович\n" +
                     "Уровень подготовки: Бакалавр;\n" +
                     "Форма обучения: Заочная, платная;\n" +
                     "Всего курсов: 4,5;\n" +
@@ -19,13 +19,13 @@ public class InfoMessage {
                     "Текущий курс: 2;\n" +
                     "Текущий семестр: 3;\n" +
                     "Группы в этом чате: з3530902/10002, з3530902/10001;\n" +
-                    "Ссылка на нашу группу ВК: https://vk.com/iknt090302";
+                    "Ссылка на нашу группу ВК: https://vk.com/iknt090302\n" +
+                    "Войти в личный кабинет СПбПУ: http://lk.spbstu.ru/\n";
+
     public SendMessage sendInfoMsg(String chatId) {
         SendMessage message_to_be_sent = new SendMessage();
-        message_to_be_sent.enableMarkdown(true);
         message_to_be_sent.setChatId(chatId);
         message_to_be_sent.setText(info);
         return message_to_be_sent;
     }
-
 }

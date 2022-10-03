@@ -1,43 +1,56 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.telegram.politehtelegrambot.service.BotProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
-import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
-import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.media.InputMedia;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
+import java.util.ArrayList;
 import java.util.List;
 
 
 @Component
-public class StudyPlanMessage {
-    @Value("${pic1}")
-    private String picUrl1;
-    @Value("${pic2}")
-    private String picUrl2;
-    @Value("${pic3}")
-    private String picUrl3;
-    @Value("${pic4}")
-    private String picUrl4;
+public class StudyPlanMessage{
 
-//    private final InputMediaPhoto photo1 = new InputMediaPhoto(picUrl1);
-//    private final InputMediaPhoto photo2 = new InputMediaPhoto(picUrl2);
-//    private final InputMediaPhoto photo3 = new InputMediaPhoto(picUrl3);
-//    private final InputMediaPhoto photo4 = new InputMediaPhoto(picUrl4);
-    //private final List<InputMedia> mediaGroupPhoto = List.of(new InputMediaPhoto(picUrl2));
+    private final BotProperties botProperties;
 
+    @Autowired
+    public StudyPlanMessage(BotProperties botProperties) {
+        this.botProperties = botProperties;
+    }
 
-    private java.util.Date today = new java.util.Date();
-     public SendPhoto sendPhotoPlanMsg(String chatId) {
-          SendPhoto message = new SendPhoto();
-          message.setChatId(chatId);
-          message.setCaption("Сегодня: " + today.toString());
-          message.setPhoto(new InputFile(picUrl1));
-//          SendMediaGroup mediaGroup = new SendMediaGroup();
-//          mediaGroup.setMedias(mediaGroupPhoto);
-//          mediaGroup.setChatId(chatId);
-          return message;
+     public SendMediaGroup sendPhotoPlanMsg(String chatId) {
+          List <InputMedia> photoList = List.of(
+                  new InputMediaPhoto(botProperties.getPicUrl1()),
+                  new InputMediaPhoto(botProperties.getPicUrl2()),
+                  new InputMediaPhoto(botProperties.getPicUrl3()),
+                  new InputMediaPhoto(botProperties.getPicUrl4())
+                  );
+          SendMediaGroup mediaGroup = new SendMediaGroup();
+          mediaGroup.setMedias(photoList);
+          mediaGroup.setChatId(chatId);
+          return mediaGroup;
      }
 
+     public SendMessage sendMessageWithPDFLink(String chatId){
+         SendMessage message = new SendMessage();
+         message.setChatId(chatId);
+         message.setEntities(getConfiguredLink());
+         message.setText("Скачать полный PDF");
+         return message;
+     }
+
+     private List<MessageEntity> getConfiguredLink(){
+         MessageEntity messageEntity = new MessageEntity();
+         messageEntity.setType("text_link");
+         messageEntity.setUrl(botProperties.getPdfURL());
+         messageEntity.setOffset(0);
+         messageEntity.setLength(18);
+         List<MessageEntity> entitiesList = new ArrayList<>();
+         entitiesList.add(messageEntity);
+         return entitiesList;
+     }
 }

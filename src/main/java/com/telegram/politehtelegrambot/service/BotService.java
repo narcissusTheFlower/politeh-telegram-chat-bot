@@ -4,6 +4,7 @@ package com.telegram.politehtelegrambot.service;
 import com.telegram.politehtelegrambot.messgeTypes.HelpMessage;
 import com.telegram.politehtelegrambot.messgeTypes.InfoMessage;
 import com.telegram.politehtelegrambot.messgeTypes.StudyPlanMessage;
+import com.telegram.politehtelegrambot.messgeTypes.TeacherContactsMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -14,22 +15,28 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class BotService extends TelegramLongPollingBot {
 
-
     private StudyPlanMessage studyPlanMessage;
+
     private HelpMessage helpMessage;
+
     private InfoMessage infoMessage;
-    private BotConfig botConfig;
+
+    private BotProperties botProperties;
+
+    private TeacherContactsMessage teacherContactsMessage;
+
     @Autowired
     public BotService(StudyPlanMessage studyPlanMessage,
                       HelpMessage helpMessage,
                       InfoMessage infoMessage,
-                      BotConfig botConfig) {
+                      BotProperties botProperties,
+                      TeacherContactsMessage teacherContactsMessage) {
         this.studyPlanMessage = studyPlanMessage;
         this.helpMessage = helpMessage;
         this.infoMessage = infoMessage;
-        this.botConfig = botConfig;
+        this.botProperties = botProperties;
+        this.teacherContactsMessage = teacherContactsMessage;
     }
-
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -47,10 +54,11 @@ public class BotService extends TelegramLongPollingBot {
                         execute(infoMessage.sendInfoMsg(setChatId));
                         break;
                     case "/teachers":
-
+                        execute(teacherContactsMessage.sendTeacherContactsMsg(setChatId));
                         break;
                     case "/plan":
                         execute(studyPlanMessage.sendPhotoPlanMsg(setChatId));
+                        execute(studyPlanMessage.sendMessageWithPDFLink(setChatId));
                         break;
                     case "/subjects":
 
@@ -65,18 +73,17 @@ public class BotService extends TelegramLongPollingBot {
             }catch (TelegramApiException e){
                 e.printStackTrace();
             }
-
         }
     }
 
     @Override
     public String getBotToken() {
-        return botConfig.getBotToken();
+        return botProperties.getBotToken();
     }
 
     @Override
     public String getBotUsername() {
-        return botConfig.getBotName();
+        return botProperties.getBotName();
     }
 
 

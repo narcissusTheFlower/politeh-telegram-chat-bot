@@ -1,17 +1,12 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
-
-import com.telegram.politehtelegrambot.service.Commands;
 import lombok.ToString;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
-import java.util.List;
-
 @Component
 @ToString
 public class HelpMessage {
-
 
     private final String availableCommands =
             "Список доступных комманд:\n" +
@@ -25,7 +20,6 @@ public class HelpMessage {
 
     public SendMessage sendHelpMsg(String chatId) {
         SendMessage message_to_be_sent = new SendMessage();
-        message_to_be_sent.enableMarkdown(true);
         message_to_be_sent.setChatId(chatId);
         message_to_be_sent.setText(availableCommands);
         return message_to_be_sent;
