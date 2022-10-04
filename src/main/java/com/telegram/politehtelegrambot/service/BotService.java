@@ -5,6 +5,7 @@ import com.telegram.politehtelegrambot.messgeTypes.HelpMessage;
 import com.telegram.politehtelegrambot.messgeTypes.InfoMessage;
 import com.telegram.politehtelegrambot.messgeTypes.StudyPlanMessage;
 import com.telegram.politehtelegrambot.messgeTypes.TeacherContactsMessage;
+import com.telegram.politehtelegrambot.vk.VKInit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -14,6 +15,9 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 public class BotService extends TelegramLongPollingBot {
+
+
+    private VKInit VKInit;
 
     private StudyPlanMessage studyPlanMessage;
 
@@ -26,11 +30,13 @@ public class BotService extends TelegramLongPollingBot {
     private TeacherContactsMessage teacherContactsMessage;
 
     @Autowired
-    public BotService(StudyPlanMessage studyPlanMessage,
+    public BotService(VKInit VKInit,
+                      StudyPlanMessage studyPlanMessage,
                       HelpMessage helpMessage,
                       InfoMessage infoMessage,
                       BotProperties botProperties,
                       TeacherContactsMessage teacherContactsMessage) {
+        this.VKInit = VKInit;
         this.studyPlanMessage = studyPlanMessage;
         this.helpMessage = helpMessage;
         this.infoMessage = infoMessage;

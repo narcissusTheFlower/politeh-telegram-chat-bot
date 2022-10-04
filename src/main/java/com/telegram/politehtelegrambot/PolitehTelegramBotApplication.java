@@ -2,7 +2,8 @@ package com.telegram.politehtelegrambot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-@SpringBootApplication(scanBasePackages={"com.telegram.politehtelegrambot"})
+
+@SpringBootApplication()
 public class PolitehTelegramBotApplication {
 
     public static void main(String[] args) {

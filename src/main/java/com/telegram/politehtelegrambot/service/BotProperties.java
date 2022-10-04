@@ -2,8 +2,11 @@ package com.telegram.politehtelegrambot.service;
 
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
+
+import javax.inject.Singleton;
 
 @Component
 @Data
@@ -30,4 +33,10 @@ public class BotProperties {
     //For TeacherContactsMessage class
     @Value("${teacherContacts}")
     private String teacherContactsURL;
+
+    //VK API
+    @Value("${vk.token}")
+    private String vkToken;
+    @Value("${vk.id}")
+    private Integer vkId;
 }
