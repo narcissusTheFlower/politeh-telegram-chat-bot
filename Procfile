@@ -1,0 +1,1 @@
+web: java -jar build/libs/PolitehTelegramBot-0.0.1.jar
