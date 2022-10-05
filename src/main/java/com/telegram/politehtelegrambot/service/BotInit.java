@@ -25,7 +25,6 @@ public class BotInit implements InitializingBean {
     @Override
     public void afterPropertiesSet() throws TelegramApiException  {
         connectTelegramBot();
-        vkInit.connectToVKApi();
     }
 
     private void connectTelegramBot() throws TelegramApiException{

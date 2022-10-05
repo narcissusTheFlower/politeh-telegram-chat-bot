@@ -2,6 +2,7 @@ package com.telegram.politehtelegrambot.messgeTypes;
 
 import com.telegram.politehtelegrambot.service.BotProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -15,6 +16,16 @@ import java.util.List;
 @Component
 public class StudyPlanMessage{
 
+    @Value("${pic1}")
+    private String picUrl1;
+    @Value("${pic2}")
+    private String picUrl2;
+    @Value("${pic3}")
+    private String picUrl3;
+    @Value("${pic4}")
+    private String picUrl4;
+    @Value("${pdfLink}")
+    private String pdfURL;
     private final BotProperties botProperties;
 
     @Autowired
@@ -24,10 +35,10 @@ public class StudyPlanMessage{
 
      public SendMediaGroup sendPhotoPlanMsg(String chatId) {
           List <InputMedia> photoList = List.of(
-                  new InputMediaPhoto(botProperties.getPicUrl1()),
-                  new InputMediaPhoto(botProperties.getPicUrl2()),
-                  new InputMediaPhoto(botProperties.getPicUrl3()),
-                  new InputMediaPhoto(botProperties.getPicUrl4())
+                  new InputMediaPhoto(picUrl1),
+                  new InputMediaPhoto(picUrl2),
+                  new InputMediaPhoto(picUrl3),
+                  new InputMediaPhoto(picUrl4)
                   );
           SendMediaGroup mediaGroup = new SendMediaGroup();
           mediaGroup.setMedias(photoList);
@@ -46,7 +57,7 @@ public class StudyPlanMessage{
      private List<MessageEntity> getConfiguredLink(){
          MessageEntity messageEntity = new MessageEntity();
          messageEntity.setType("text_link");
-         messageEntity.setUrl(botProperties.getPdfURL());
+         messageEntity.setUrl(pdfURL);
          messageEntity.setOffset(0);
          messageEntity.setLength(18);
          List<MessageEntity> entitiesList = new ArrayList<>();

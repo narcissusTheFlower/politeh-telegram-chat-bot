@@ -73,7 +73,7 @@ public class BotService extends TelegramLongPollingBot {
 
                         break;
                     case "/vk":
-
+                        VKInit.parseWall();
                         break;
                 }
             }catch (TelegramApiException e){

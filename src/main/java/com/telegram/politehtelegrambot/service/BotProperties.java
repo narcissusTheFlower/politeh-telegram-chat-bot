@@ -17,26 +17,4 @@ public class BotProperties {
     private String botName;
     @Value("${bot.token}")
     private String botToken;
-
-    //Files for StudyPlanMessage class
-    @Value("${pic1}")
-    private String picUrl1;
-    @Value("${pic2}")
-    private String picUrl2;
-    @Value("${pic3}")
-    private String picUrl3;
-    @Value("${pic4}")
-    private String picUrl4;
-    @Value("${pdfLink}")
-    private String pdfURL;
-
-    //For TeacherContactsMessage class
-    @Value("${teacherContacts}")
-    private String teacherContactsURL;
-
-    //VK API
-    @Value("${vk.token}")
-    private String vkToken;
-    @Value("${vk.id}")
-    private Integer vkId;
 }
