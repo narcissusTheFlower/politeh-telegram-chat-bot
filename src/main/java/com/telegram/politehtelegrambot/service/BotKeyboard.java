@@ -23,7 +23,6 @@
 //        KeyboardRow keyboardRow = new KeyboardRow();
 //        keyboardRow.add(new KeyboardButton("Список команд"));
 //        keyboardRow.add(new KeyboardButton("Общая информация"));
-//        keyboardRow.add(new KeyboardButton("Расписание сессий"));
 //        keyboardRowList.add(keyboardRow);
 //        replyKeyboardMarkup.setKeyboard(keyboardRowList);
 //    }

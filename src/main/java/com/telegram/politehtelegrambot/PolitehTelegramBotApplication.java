@@ -8,9 +8,6 @@ public class PolitehTelegramBotApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(PolitehTelegramBotApplication.class, args);
-        System.out.println("New gradle project");
-        String java_home = System.getenv("USER");
-        System.out.println(java_home);
     }
 
 }

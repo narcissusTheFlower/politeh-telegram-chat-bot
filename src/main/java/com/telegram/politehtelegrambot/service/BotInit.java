@@ -1,6 +1,5 @@
 package com.telegram.politehtelegrambot.service;
 
-import com.telegram.politehtelegrambot.vk.VKInit;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,12 +13,9 @@ public class BotInit implements InitializingBean {
 
     private BotService botService;
 
-    private VKInit vkInit;
-
     @Autowired
-    public BotInit(BotService botService, VKInit vkInit) {
+    public BotInit(BotService botService) {
         this.botService = botService;
-        this.vkInit = vkInit;
     }
 
     @Override

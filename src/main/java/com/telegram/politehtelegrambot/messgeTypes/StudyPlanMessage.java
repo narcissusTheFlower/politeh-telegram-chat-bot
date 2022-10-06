@@ -1,7 +1,6 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
-import com.telegram.politehtelegrambot.service.BotProperties;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
@@ -26,12 +25,6 @@ public class StudyPlanMessage{
     private String picUrl4;
     @Value("${pdfLink}")
     private String pdfURL;
-    private final BotProperties botProperties;
-
-    @Autowired
-    public StudyPlanMessage(BotProperties botProperties) {
-        this.botProperties = botProperties;
-    }
 
      public SendMediaGroup sendPhotoPlanMsg(String chatId) {
           List <InputMedia> photoList = List.of(

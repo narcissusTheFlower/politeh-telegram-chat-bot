@@ -16,7 +16,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class BotService extends TelegramLongPollingBot {
 
-
     private VKInit VKInit;
 
     private StudyPlanMessage studyPlanMessage;
