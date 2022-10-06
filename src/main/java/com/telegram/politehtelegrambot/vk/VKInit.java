@@ -13,9 +13,9 @@ import org.springframework.stereotype.Component;
 @Component
 public class VKInit {
 
-    private String vkToken = System.getenv("vk.token");
+    private String vkToken = System.getenv("VKTOKEN");
 
-    private Integer vkId =Integer.parseInt(System.getenv("vk.id"));
+    private Integer vkId =Integer.parseInt(System.getenv("VKID"));
 
     TransportClient transportClient = new HttpTransportClient();
     VkApiClient vk = new VkApiClient(transportClient);

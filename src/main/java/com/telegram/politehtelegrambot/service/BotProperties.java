@@ -13,7 +13,7 @@ import javax.inject.Singleton;
 @PropertySource("classpath:application.properties")
 public class BotProperties {
 
-    private String botName = System.getenv("bot.username");
+    private String botName = System.getenv("BOTUSERNAME");
 
-    private String botToken = System.getenv("bot.token");
+    private String botToken = System.getenv("BOTTOKEN");
 }
