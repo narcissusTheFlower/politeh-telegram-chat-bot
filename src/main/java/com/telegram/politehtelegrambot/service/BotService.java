@@ -1,10 +1,7 @@
 package com.telegram.politehtelegrambot.service;
 
 
-import com.telegram.politehtelegrambot.messgeTypes.HelpMessage;
-import com.telegram.politehtelegrambot.messgeTypes.InfoMessage;
-import com.telegram.politehtelegrambot.messgeTypes.StudyPlanMessage;
-import com.telegram.politehtelegrambot.messgeTypes.TeacherContactsMessage;
+import com.telegram.politehtelegrambot.messgeTypes.*;
 import com.telegram.politehtelegrambot.vk.VKInit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -16,9 +13,12 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 @Component
 public class BotService extends TelegramLongPollingBot {
 
+    private DefaultMessage defaultMessage;
     private VKInit VKInit;
 
     private StudyPlanMessage studyPlanMessage;
+
+    private GreetingMessage greetingMessage;
 
     private HelpMessage helpMessage;
 
@@ -34,13 +34,17 @@ public class BotService extends TelegramLongPollingBot {
                       HelpMessage helpMessage,
                       InfoMessage infoMessage,
                       BotProperties botProperties,
-                      TeacherContactsMessage teacherContactsMessage) {
+                      TeacherContactsMessage teacherContactsMessage,
+                      GreetingMessage greetingMessage,
+                      DefaultMessage defaultMessage) {
         this.VKInit = VKInit;
         this.studyPlanMessage = studyPlanMessage;
         this.helpMessage = helpMessage;
         this.infoMessage = infoMessage;
         this.botProperties = botProperties;
         this.teacherContactsMessage = teacherContactsMessage;
+        this.greetingMessage =greetingMessage;
+        this.defaultMessage = defaultMessage;
     }
 
     @Override
@@ -52,6 +56,9 @@ public class BotService extends TelegramLongPollingBot {
 
             try {
                 switch (command) {
+                    case "/start":
+                        execute(greetingMessage.sendGreetingMsg(setChatId));
+                        break;
                     case "/help":
                         execute(helpMessage.sendHelpMsg(setChatId));
                         break;
@@ -74,6 +81,7 @@ public class BotService extends TelegramLongPollingBot {
                     case "/vk":
                         VKInit.parseWall();
                         break;
+                    default: execute(defaultMessage.sendDefaultMsg(setChatId));
                 }
             }catch (TelegramApiException e){
                 e.printStackTrace();
