@@ -3,6 +3,7 @@ package com.telegram.politehtelegrambot.telegram.bot;
 
 import com.telegram.politehtelegrambot.messgeTypes.*;
 import com.telegram.politehtelegrambot.vk.VKInit;
+import com.telegram.politehtelegrambot.vk.VkApiCalls;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -78,7 +79,8 @@ public class BotService extends TelegramLongPollingBot {
                         execute(useFullLinksMessage.sendLinksMsg(setChatId));
                         break;
                     case "/vk":
-                        VKInit.parseWall();
+                        //VKInit.parseWall();
+                        VkApiCalls.soutresult();
                         break;
                     default: execute(defaultMessage.sendDefaultMsg(setChatId));
                 }

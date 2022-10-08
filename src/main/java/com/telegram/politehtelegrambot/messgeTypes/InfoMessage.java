@@ -1,30 +1,36 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
-import com.vdurmont.emoji.EmojiParser;
+import com.telegram.politehtelegrambot.utils.EmojiFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 @Component
 public class InfoMessage {
+    //TODO dagerous, remember to change numbers
+    private final Short currentSemester = 3;
+    private final Short currentYear = 2;
+    private final Short endYear = 2026;
 
-    private String small_blue_diamond = EmojiParser.parseToUnicode(":small_blue_diamond:");
-
-    //TODO dagerous, remember to change
     private final String info =
             """
-                    Университет: ФГАО ВО "СПбПУ";
-                    
-                    %s Учебное подразделение: Институт компьютерных наук и технологий;
-                    %s Направление подготовки: 09.03.02 Информационные системы и технологии;
-                    %s Руководитель образовательной программы: Ефремов Артём Александрович
-                    %s Уровень подготовки: Бакалавр;
-                    %s Форма обучения: Заочная, платная;
-                    %s Всего курсов: 4,5;
-                    %s Всего семестров: 9;
-                    %s Текущий курс: 2;
-                    %s Текущий семестр: 3;
-                    %s Группы в этом чате: з3530902/10002, з3530902/10001;
-                    """.replace("%s",small_blue_diamond);
+                    %star Университет: ФГАО ВО "СПбПУ";
+                    %diamond Учебное подразделение: Институт компьютерных наук и технологий;
+                    %diamond Направление подготовки: 09.03.02 Информационные системы и технологии;
+                    %diamond Руководитель образовательной программы: Ефремов Артём Александрович
+                    %diamond Уровень подготовки: Бакалавр;
+                    %diamond Форма обучения: Заочная, платная;
+                    %diamond Всего курсов: 4,5;
+                    %diamond Всего семестров: 9;
+                    %diamond Текущий курс: %currentYear;
+                    %diamond Текущий семестр: %currentSemester;
+                    %diamond Учимся до: %endYear;
+                    %diamond Группы в этом чате: з3530902/10002, з3530902/10001;
+                    """
+                    .replace("%diamond", EmojiFactory.getBlueDiamond())
+                    .replace("%star", EmojiFactory.getStar())
+                    .replace("%currentSemester", String.valueOf(currentSemester))
+                    .replace("%currentYear", String.valueOf(currentYear))
+                    .replace("%endYear", String.valueOf(endYear));
 
 
     public SendMessage sendInfoMsg(String chatId) {
