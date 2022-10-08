@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.service;
+package com.telegram.politehtelegrambot.telegram.bot;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;

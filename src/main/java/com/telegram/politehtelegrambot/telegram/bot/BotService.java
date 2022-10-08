@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.service;
+package com.telegram.politehtelegrambot.telegram.bot;
 
 
 import com.telegram.politehtelegrambot.messgeTypes.*;
@@ -15,18 +15,13 @@ public class BotService extends TelegramLongPollingBot {
 
     private DefaultMessage defaultMessage;
     private VKInit VKInit;
-
     private StudyPlanMessage studyPlanMessage;
-
     private GreetingMessage greetingMessage;
-
     private HelpMessage helpMessage;
-
     private InfoMessage infoMessage;
-
     private BotProperties botProperties;
-
     private TeacherContactsMessage teacherContactsMessage;
+    private UseFullLinksMessage useFullLinksMessage;
 
     @Autowired
     public BotService(VKInit VKInit,
@@ -36,7 +31,8 @@ public class BotService extends TelegramLongPollingBot {
                       BotProperties botProperties,
                       TeacherContactsMessage teacherContactsMessage,
                       GreetingMessage greetingMessage,
-                      DefaultMessage defaultMessage) {
+                      DefaultMessage defaultMessage,
+                      UseFullLinksMessage useFullLinksMessage) {
         this.VKInit = VKInit;
         this.studyPlanMessage = studyPlanMessage;
         this.helpMessage = helpMessage;
@@ -45,6 +41,7 @@ public class BotService extends TelegramLongPollingBot {
         this.teacherContactsMessage = teacherContactsMessage;
         this.greetingMessage =greetingMessage;
         this.defaultMessage = defaultMessage;
+        this.useFullLinksMessage = useFullLinksMessage;
     }
 
     @Override
@@ -53,7 +50,6 @@ public class BotService extends TelegramLongPollingBot {
         if (incoming_message != null && incoming_message.hasText()) {
             String command = incoming_message.getText();
             String setChatId = incoming_message.getChatId().toString();
-
             try {
                 switch (command) {
                     case "/start":
@@ -77,6 +73,9 @@ public class BotService extends TelegramLongPollingBot {
                         break;
                     case "/deadlines":
 
+                        break;
+                    case "/links":
+                        execute(useFullLinksMessage.sendLinksMsg(setChatId));
                         break;
                     case "/vk":
                         VKInit.parseWall();

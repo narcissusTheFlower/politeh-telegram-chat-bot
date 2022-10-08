@@ -1,11 +1,13 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
+import com.vdurmont.emoji.EmojiParser;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 @Component
 public class InfoMessage {
 
+    private String small_blue_diamond = EmojiParser.parseToUnicode(":small_blue_diamond:");
     private final String info =
             "Университет: ФГАО ВО \"СПбПУ\";\n" +
                     "Учебное подразделение: Институт компьютерных наук и технологий;\n" +
@@ -18,14 +20,13 @@ public class InfoMessage {
                     //TODO dagerous, remember to change
                     "Текущий курс: 2;\n" +
                     "Текущий семестр: 3;\n" +
-                    "Группы в этом чате: з3530902/10002, з3530902/10001;\n" +
-                    "Ссылка на нашу группу ВК: https://vk.com/iknt090302\n" +
-                    "Войти в личный кабинет СПбПУ: http://lk.spbstu.ru/\n";
+                    "Группы в этом чате: з3530902/10002, з3530902/10001;\n";
+
 
     public SendMessage sendInfoMsg(String chatId) {
-        SendMessage message_to_be_sent = new SendMessage();
-        message_to_be_sent.setChatId(chatId);
-        message_to_be_sent.setText(info);
-        return message_to_be_sent;
+        SendMessage messageToBeSent = new SendMessage();
+        messageToBeSent.setChatId(chatId);
+        messageToBeSent.setText(info);
+        return messageToBeSent;
     }
 }

@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.service;
+package com.telegram.politehtelegrambot.telegram.bot;
 
 import lombok.Data;
 import org.springframework.context.annotation.PropertySource;

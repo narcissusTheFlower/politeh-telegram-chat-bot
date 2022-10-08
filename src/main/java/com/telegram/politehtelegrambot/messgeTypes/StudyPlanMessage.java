@@ -40,11 +40,11 @@ public class StudyPlanMessage{
      }
 
      public SendMessage sendMessageWithPDFLink(String chatId){
-         SendMessage message = new SendMessage();
-         message.setChatId(chatId);
-         message.setEntities(getConfiguredLink());
-         message.setText("Скачать полный PDF");
-         return message;
+         SendMessage messageToBeSent = new SendMessage();
+         messageToBeSent.setChatId(chatId);
+         messageToBeSent.setEntities(getConfiguredLink());
+         messageToBeSent.setText("Скачать полный PDF");
+         return messageToBeSent;
      }
 
      private List<MessageEntity> getConfiguredLink(){

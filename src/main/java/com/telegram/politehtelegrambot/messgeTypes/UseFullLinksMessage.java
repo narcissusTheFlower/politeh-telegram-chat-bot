@@ -3,15 +3,16 @@ package com.telegram.politehtelegrambot.messgeTypes;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
+
 @Component
-public class TeacherContactsMessage {
+public class UseFullLinksMessage {
 
-    private final String contacts = "https://vk.com/@iknt090302-kontakty-po-uchebnym-voprosam";
+    private final String links = "\nhttps://vk.com/@iknt090302-ssylki-na-sdo";
 
-    public SendMessage sendTeacherContactsMsg(String chatId) {
+    public SendMessage sendLinksMsg(String chatId) {
         SendMessage messageToBeSent = new SendMessage();
         messageToBeSent.setChatId(chatId);
-        messageToBeSent.setText("Контакты преподавателей:\n" + contacts);
+        messageToBeSent.setText("Открыть список ссылок:" + links);
         return messageToBeSent;
     }
 }

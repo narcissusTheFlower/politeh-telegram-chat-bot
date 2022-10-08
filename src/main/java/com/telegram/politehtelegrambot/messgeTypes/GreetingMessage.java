@@ -1,12 +1,10 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
-
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 @Component
 public class GreetingMessage {
-
 
     String greetingMessage = "Здравствуй студент Политеха!\n" +
             "Начни с команды /help, чтобы ознакомиться с функционалом.";
