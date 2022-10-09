@@ -1,68 +1,53 @@
 package com.telegram.politehtelegrambot.telegram.bot;
 
-
 import com.telegram.politehtelegrambot.messgeTypes.*;
-import com.telegram.politehtelegrambot.vk.VKInit;
+import com.telegram.politehtelegrambot.vk.VkApiCalls;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class BotService extends TelegramLongPollingBot {
 
-    private DefaultMessage defaultMessage;
-    private VKInit VKInit;
-    private StudyPlanMessage studyPlanMessage;
-    private GreetingMessage greetingMessage;
-    private HelpMessage helpMessage;
-    private InfoMessage infoMessage;
     private BotProperties botProperties;
-    private TeacherContactsMessage teacherContactsMessage;
-    private UseFullLinksMessage useFullLinksMessage;
+
+    private StudyPlanMessage studyPlanMessage;   //I have to create this object as POJO, otherwise links are not instantiated(i think)
 
     @Autowired
-    public BotService(VKInit VKInit,
-                      StudyPlanMessage studyPlanMessage,
-                      HelpMessage helpMessage,
-                      InfoMessage infoMessage,
-                      BotProperties botProperties,
-                      TeacherContactsMessage teacherContactsMessage,
-                      GreetingMessage greetingMessage,
-                      DefaultMessage defaultMessage,
-                      UseFullLinksMessage useFullLinksMessage) {
-        this.VKInit = VKInit;
-        this.studyPlanMessage = studyPlanMessage;
-        this.helpMessage = helpMessage;
-        this.infoMessage = infoMessage;
+    public BotService(BotProperties botProperties, StudyPlanMessage studyPlanMessage) throws TelegramApiException {
         this.botProperties = botProperties;
-        this.teacherContactsMessage = teacherContactsMessage;
-        this.greetingMessage =greetingMessage;
-        this.defaultMessage = defaultMessage;
-        this.useFullLinksMessage = useFullLinksMessage;
+        this.studyPlanMessage = studyPlanMessage;
+        execute(BotMenu.activateMenu());
     }
 
+    @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
+        BotMsgSender.updateNotNull(update);
         Message incoming_message = update.getMessage();
-        if (incoming_message != null && incoming_message.hasText()) {
-            String command = incoming_message.getText();
-            String setChatId = incoming_message.getChatId().toString();
-            try {
-                switch (command) {
+        String setChatId = incoming_message.getChatId().toString();
+                switch (incoming_message.getText()) {
                     case "/start":
-                        execute(greetingMessage.sendGreetingMsg(setChatId));
+                        execute(new GreetingMessage().sendGreetingMsg(setChatId));
                         break;
                     case "/help":
-                        execute(helpMessage.sendHelpMsg(setChatId));
+                        execute(new HelpMessage().sendHelpMsg(setChatId));
                         break;
                     case "/info":
-                        execute(infoMessage.sendInfoMsg(setChatId));
+                        execute(new InfoMessage().sendInfoMsg(setChatId));
                         break;
                     case "/teachers":
-                        execute(teacherContactsMessage.sendTeacherContactsMsg(setChatId));
+                        execute(new TeacherContactsMessage().sendTeacherContactsMsg(setChatId));
                         break;
                     case "/plan":
                         execute(studyPlanMessage.sendPhotoPlanMsg(setChatId));
@@ -75,17 +60,14 @@ public class BotService extends TelegramLongPollingBot {
 
                         break;
                     case "/links":
-                        execute(useFullLinksMessage.sendLinksMsg(setChatId));
+                        execute(new UseFullLinksMessage().sendLinksMsg(setChatId));
                         break;
                     case "/vk":
-                        VKInit.parseWall();
+                        //VKInit.parseWall();
+                        VkApiCalls.soutresult();
                         break;
-                    default: execute(defaultMessage.sendDefaultMsg(setChatId));
+                    default: execute(new DefaultMessage().sendDefaultMsg(setChatId));
                 }
-            }catch (TelegramApiException e){
-                e.printStackTrace();
-            }
-        }
     }
 
     @Override
@@ -97,6 +79,4 @@ public class BotService extends TelegramLongPollingBot {
     public String getBotUsername() {
         return botProperties.getBotName();
     }
-
-
 }

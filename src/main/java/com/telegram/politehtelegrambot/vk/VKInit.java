@@ -18,12 +18,10 @@ public class VKInit {
 
     public UserActor getUserActor(){
         UserActor userActor = new UserActor(vkId, vkToken);
-        System.out.println(userActor.getAccessToken());
         return userActor;
     }
 
     public String parseWall(){
-        System.out.println(vk.wall().get(getUserActor()));
         return null;
     }
 }
