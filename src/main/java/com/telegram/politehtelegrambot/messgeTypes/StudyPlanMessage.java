@@ -26,7 +26,7 @@ public class StudyPlanMessage{
     @Value("${pdfLink}")
     private String pdfURL;
 
-     public SendMediaGroup sendPhotoPlanMsg(String chatId) {
+    public SendMediaGroup sendPhotoPlanMsg(String chatId) {
           List <InputMedia> photoList = List.of(
                   new InputMediaPhoto(picUrl1),
                   new InputMediaPhoto(picUrl2),

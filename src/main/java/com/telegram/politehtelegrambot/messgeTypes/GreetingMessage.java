@@ -1,5 +1,6 @@
 package com.telegram.politehtelegrambot.messgeTypes;
 
+import com.telegram.politehtelegrambot.telegram.bot.BotMenu;
 import com.telegram.politehtelegrambot.utils.EmojiFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -13,9 +14,9 @@ public class GreetingMessage {
             """.replace("%fire", EmojiFactory.getFire());
 
     public SendMessage sendGreetingMsg(String chatId) {
-        SendMessage message_to_be_sent = new SendMessage();
-        message_to_be_sent.setChatId(chatId);
-        message_to_be_sent.setText(getGreetingMessage);
-        return message_to_be_sent;
+        SendMessage messageToBeSent = new SendMessage();
+        messageToBeSent.setChatId(chatId);
+        messageToBeSent.setText(getGreetingMessage);
+        return messageToBeSent;
     }
 }

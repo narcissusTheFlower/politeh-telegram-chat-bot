@@ -12,9 +12,9 @@ private String getDefaultMsg = """
         """.replace("%warning", EmojiFactory.getWarning());
 
     public SendMessage sendDefaultMsg(String chatId) {
-        SendMessage message_to_be_sent = new SendMessage();
-        message_to_be_sent.setChatId(chatId);
-        message_to_be_sent.setText(getDefaultMsg);
-        return message_to_be_sent;
+        SendMessage messageToBeSent = new SendMessage();
+        messageToBeSent.setChatId(chatId);
+        messageToBeSent.setText(getDefaultMsg);
+        return messageToBeSent;
     }
 }
