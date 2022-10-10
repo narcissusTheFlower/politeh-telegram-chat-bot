@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.messgeTypes;
+package com.telegram.politehtelegrambot.commandTypes;
 
 
 import org.springframework.beans.factory.annotation.Value;

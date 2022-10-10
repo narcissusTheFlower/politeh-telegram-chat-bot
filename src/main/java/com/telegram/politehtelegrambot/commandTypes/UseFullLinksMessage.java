@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.messgeTypes;
+package com.telegram.politehtelegrambot.commandTypes;
 
 import com.telegram.politehtelegrambot.utils.EmojiFactory;
 import org.springframework.stereotype.Component;
@@ -7,8 +7,8 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 @Component
 public class UseFullLinksMessage {
 
-    private final String getLinks = """
-             %blue_diamond Ссылки на учебные порталы:
+    private final String GETlINKS = """
+            %blue_diamond Ссылки на учебные порталы:
             https://vk.com/@iknt090302-ssylki-na-sdo
             %blue_diamond Наша группа ВК: 
             https://vk.com/iknt090302
@@ -32,7 +32,7 @@ public class UseFullLinksMessage {
     public SendMessage sendLinksMsg(String chatId) {
         SendMessage messageToBeSent = new SendMessage();
         messageToBeSent.setChatId(chatId);
-        messageToBeSent.setText(getLinks);
+        messageToBeSent.setText(GETlINKS);
         return messageToBeSent;
     }
 }

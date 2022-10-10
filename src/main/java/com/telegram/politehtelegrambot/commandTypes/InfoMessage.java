@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.messgeTypes;
+package com.telegram.politehtelegrambot.commandTypes;
 
 import com.telegram.politehtelegrambot.utils.EmojiFactory;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ public class InfoMessage {
     private final Short currentYear = 2;
     private final Short endYear = 2026;
 
-    private final String info =
+    private final String INFO =
             """
                     %star Университет: ФГАО ВО "СПбПУ";
                     %diamond Учебное подразделение: Институт компьютерных наук и технологий;
@@ -36,7 +36,7 @@ public class InfoMessage {
     public SendMessage sendInfoMsg(String chatId) {
         SendMessage messageToBeSent = new SendMessage();
         messageToBeSent.setChatId(chatId);
-        messageToBeSent.setText(info);
+        messageToBeSent.setText(INFO);
         return messageToBeSent;
     }
 }

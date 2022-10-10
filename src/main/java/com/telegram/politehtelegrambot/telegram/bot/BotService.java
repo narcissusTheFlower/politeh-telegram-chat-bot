@@ -1,20 +1,14 @@
 package com.telegram.politehtelegrambot.telegram.bot;
 
-import com.telegram.politehtelegrambot.messgeTypes.*;
-import com.telegram.politehtelegrambot.vk.VkApiCalls;
+import com.telegram.politehtelegrambot.commandTypes.*;
+import com.telegram.politehtelegrambot.utils.CommandTypeDecider;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
-import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class BotService extends TelegramLongPollingBot {
@@ -33,40 +27,31 @@ public class BotService extends TelegramLongPollingBot {
     @SneakyThrows
     @Override
     public void onUpdateReceived(Update update) {
-        BotMsgSender.updateNotNull(update);
         Message incoming_message = update.getMessage();
         String setChatId = incoming_message.getChatId().toString();
-                switch (incoming_message.getText()) {
-                    case "/start":
+                switch (CommandTypeDecider.decideCommandFrom(incoming_message)) {
+                    case START:
                         execute(new GreetingMessage().sendGreetingMsg(setChatId));
                         break;
-                    case "/help":
+                    case HELP:
                         execute(new HelpMessage().sendHelpMsg(setChatId));
                         break;
-                    case "/info":
+                    case INFO:
                         execute(new InfoMessage().sendInfoMsg(setChatId));
                         break;
-                    case "/teachers":
+                    case TEACHERS_CONTACTS:
                         execute(new TeacherContactsMessage().sendTeacherContactsMsg(setChatId));
                         break;
-                    case "/plan":
+                    case PLAN:
                         execute(studyPlanMessage.sendPhotoPlanMsg(setChatId));
                         execute(studyPlanMessage.sendMessageWithPDFLink(setChatId));
                         break;
-                    case "/subjects":
-
-                        break;
-                    case "/deadlines":
-
-                        break;
-                    case "/links":
+                    case LINKS:
                         execute(new UseFullLinksMessage().sendLinksMsg(setChatId));
                         break;
-                    case "/vk":
+                    case VK:
                         //VKInit.parseWall();
-                        VkApiCalls.soutresult();
                         break;
-                    default: execute(new DefaultMessage().sendDefaultMsg(setChatId));
                 }
     }
 

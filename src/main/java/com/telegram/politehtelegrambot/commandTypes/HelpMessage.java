@@ -1,4 +1,4 @@
-package com.telegram.politehtelegrambot.messgeTypes;
+package com.telegram.politehtelegrambot.commandTypes;
 
 import com.telegram.politehtelegrambot.utils.EmojiFactory;
 import lombok.ToString;
@@ -12,7 +12,7 @@ public class HelpMessage {
 //                    %diamond /subjects - список премедметов на текущий семестр;
 //                    %diamond /deadlines - список дат по сдаче предметов;
 //                    %diamond /vk - вывести последний пост из группы ВК.
-    private final String availableCommands ="""
+    private final String AVAILABLE_COMMANDS ="""
                     %star Список доступных комманд:
                     %diamond /help - вывести это меню
                     %diamond /info - общая информация по направлению учебы
@@ -24,7 +24,7 @@ public class HelpMessage {
     public SendMessage sendHelpMsg(String chatId) {
         SendMessage messageToBeSent = new SendMessage();
         messageToBeSent.setChatId(chatId);
-        messageToBeSent.setText(availableCommands);
+        messageToBeSent.setText(AVAILABLE_COMMANDS);
         return messageToBeSent;
     }
 }
