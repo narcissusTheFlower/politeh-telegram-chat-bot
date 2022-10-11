@@ -1,13 +1,14 @@
-package com.telegram.politehtelegrambot.commandTypes;
+package com.telegram.politehtelegrambot.messages;
 
 import com.telegram.politehtelegrambot.utils.EmojiFactory;
+import lombok.NonNull;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 @Component
-public class UseFullLinksMessage {
+public class UseFullLinksMessage extends SendMessage{
 
-    private final String GETlINKS = """
+    private static final String GETlINKS = """
             %blue_diamond Ссылки на учебные порталы:
             https://vk.com/@iknt090302-ssylki-na-sdo
             %blue_diamond Наша группа ВК: 
@@ -28,11 +29,12 @@ public class UseFullLinksMessage {
             https://studfile.net/spbgpu/
             
          """.replace("%blue_diamond", EmojiFactory.getBlueDiamond());
-
-    public SendMessage sendLinksMsg(String chatId) {
-        SendMessage messageToBeSent = new SendMessage();
-        messageToBeSent.setChatId(chatId);
-        messageToBeSent.setText(GETlINKS);
-        return messageToBeSent;
+    public UseFullLinksMessage() {
     }
+
+    public UseFullLinksMessage(String chatId) {
+        super(chatId, GETlINKS);
+    }
+
+
 }
