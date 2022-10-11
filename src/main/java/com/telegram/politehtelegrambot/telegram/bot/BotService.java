@@ -1,58 +1,26 @@
 package com.telegram.politehtelegrambot.telegram.bot;
 
-import com.telegram.politehtelegrambot.commandTypes.*;
-import com.telegram.politehtelegrambot.utils.CommandTypeDecider;
-import lombok.SneakyThrows;
+import com.telegram.politehtelegrambot.messages.StudyPlanPdfMessage;
+import com.telegram.politehtelegrambot.messages.UnknownCommandMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
-import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.extensions.bots.commandbot.TelegramLongPollingCommandBot;
+import org.telegram.telegrambots.extensions.bots.commandbot.commands.IBotCommand;
+import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScopeDefault;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
-public class BotService extends TelegramLongPollingBot {
+public class BotService extends TelegramLongPollingCommandBot {
 
     private BotProperties botProperties;
 
-    private StudyPlanMessage studyPlanMessage;   //I have to create this object as POJO, otherwise links are not instantiated(i think)
-
     @Autowired
-    public BotService(BotProperties botProperties, StudyPlanMessage studyPlanMessage) throws TelegramApiException {
+    public BotService(BotProperties botProperties) throws TelegramApiException {
         this.botProperties = botProperties;
-        this.studyPlanMessage = studyPlanMessage;
-        execute(BotMenu.activateMenu());
-    }
-
-    @SneakyThrows
-    @Override
-    public void onUpdateReceived(Update update) {
-        Message incoming_message = update.getMessage();
-        String setChatId = incoming_message.getChatId().toString();
-                switch (CommandTypeDecider.decideCommandFrom(incoming_message)) {
-                    case START:
-                        execute(new GreetingMessage().sendGreetingMsg(setChatId));
-                        break;
-                    case HELP:
-                        execute(new HelpMessage().sendHelpMsg(setChatId));
-                        break;
-                    case INFO:
-                        execute(new InfoMessage().sendInfoMsg(setChatId));
-                        break;
-                    case TEACHERS_CONTACTS:
-                        execute(new TeacherContactsMessage().sendTeacherContactsMsg(setChatId));
-                        break;
-                    case PLAN:
-                        execute(studyPlanMessage.sendPhotoPlanMsg(setChatId));
-                        execute(studyPlanMessage.sendMessageWithPDFLink(setChatId));
-                        break;
-                    case LINKS:
-                        execute(new UseFullLinksMessage().sendLinksMsg(setChatId));
-                        break;
-                    case VK:
-                        //VKInit.parseWall();
-                        break;
-                }
+        registerAll(BotCommands.getAllCommands().toArray(new IBotCommand[0]));
+        execute(new SetMyCommands(BotCommands.getMenu(),new BotCommandScopeDefault(),null));
     }
 
     @Override
@@ -63,5 +31,19 @@ public class BotService extends TelegramLongPollingBot {
     @Override
     public String getBotUsername() {
         return botProperties.getBotName();
+    }
+
+    @Override
+    public void processNonCommandUpdate(Update update) {
+
+    }
+
+    @Override
+    public void processInvalidCommandUpdate(Update update) {
+        try {
+            execute(new UnknownCommandMessage(update.getMessage().getChatId().toString()));
+        } catch (TelegramApiException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

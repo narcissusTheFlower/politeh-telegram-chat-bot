@@ -1,17 +1,17 @@
-package com.telegram.politehtelegrambot.commandTypes;
+package com.telegram.politehtelegrambot.messages;
 
 import com.telegram.politehtelegrambot.utils.EmojiFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 @Component
-public class InfoMessage {
+public class InfoMessage extends SendMessage{
     //TODO dagerous, remember to change numbers
-    private final Short currentSemester = 3;
-    private final Short currentYear = 2;
-    private final Short endYear = 2026;
+    static private final Short currentSemester = 3;
+    static private final Short currentYear = 2;
+    static private final Short endYear = 2026;
 
-    private final String INFO =
+    static private final String INFO =
             """
                     %star Университет: ФГАО ВО "СПбПУ";
                     %diamond Учебное подразделение: Институт компьютерных наук и технологий;
@@ -32,11 +32,13 @@ public class InfoMessage {
                     .replace("%currentYear", String.valueOf(currentYear))
                     .replace("%endYear", String.valueOf(endYear));
 
-
-    public SendMessage sendInfoMsg(String chatId) {
-        SendMessage messageToBeSent = new SendMessage();
-        messageToBeSent.setChatId(chatId);
-        messageToBeSent.setText(INFO);
-        return messageToBeSent;
+    public InfoMessage() {
     }
+
+    public InfoMessage(String chatId) {
+        super(chatId,INFO);
+
+    }
+
+
 }
