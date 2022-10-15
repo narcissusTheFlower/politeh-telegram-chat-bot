@@ -5,20 +5,11 @@ import org.apache.commons.lang3.NotImplementedException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseSource<T> {
-    public DatabaseSource() {
+public abstract class DatabaseSource<T> {
 
-    }
+    public abstract boolean insert(T obj);
+    public abstract List<T> selectAll();
 
-    public boolean insert(T obj) {
-        throw new NotImplementedException();
-    }
-    public List<T> selectAll(){
-        throw new NotImplementedException();
-    }
-
-    public boolean delete(T obj) {
-        throw new NotImplementedException();
-    }
+    public abstract boolean delete(T obj);
 
 }
