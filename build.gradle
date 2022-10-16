@@ -15,7 +15,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     implementation group: 'org.telegram', name: 'telegrambots', version: '6.1.0'
     implementation group: 'org.telegram', name: 'telegrambotsextensions',version: '6.1.0'
-    implementation 'com.vk.api:sdk:1.0.14'
+    implementation group: 'com.vk.api', name: 'sdk', version: '1.0.9'
+    implementation group: 'com.github.yvasyliev', name: 'java-vk-bots-longpoll-api', version: '3.5.1'
     implementation 'com.vdurmont:emoji-java:5.1.1'
     implementation 'org.apache.httpcomponents:fluent-hc:4.5.13'
 }
