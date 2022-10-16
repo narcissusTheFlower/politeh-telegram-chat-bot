@@ -5,28 +5,12 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.wall.GetFilter;
 import com.vk.api.sdk.objects.wall.responses.GetResponse;
 
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+public class GroupParsingMethods {
 
-public class VkService extends Thread {
-
-//    TimerTask task = new TimerTask() {
-//        public void () {
-//            System.out.println("Task performed on: " + new Date() + "n" +
-//                    "Thread's name: " + Thread.currentThread().getName());
-//        }
-
-//
-//    public static void parseVkGroupWalls(){
-//        Timer timer = new Timer();
-//        timer.schedule(run(),2000L);
-//    }
-
-    public static void getPostsFromWall(){
+    public static void getPostsFromSergeiGroup() {
         GetResponse getResponse;
         try {
-            getResponse = VkInit.vk.wall().get(VkInit.actor)
+            getResponse = ActorInit.vk.wall().get(ActorInit.actor)
                     .ownerId(-207600346)
                     .count(100)
                     .offset(1)
@@ -37,6 +21,4 @@ public class VkService extends Thread {
         }
         System.out.println(getResponse);
     }
-
-
 }

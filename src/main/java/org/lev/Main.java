@@ -5,8 +5,8 @@ import com.vk.api.sdk.exceptions.ClientException;
 import org.lev.bot.BotInit;
 import org.lev.bot.BotProperties;
 import org.lev.utils.PropertiesLoader;
-import org.lev.vk.VkInit;
-import org.lev.vk.VkService;
+import org.lev.vk.ActorInit;
+
 
 public class Main {
 
@@ -14,7 +14,7 @@ public class Main {
         PropertiesLoader.loadBotProperties("application.properties");
         BotProperties.setBotProperties();
         BotInit.registerBot();
-        VkInit.authorizeVk();
+        ActorInit.authorizeVk();
         //VkService.getPostsFromWall();
     }
 }
