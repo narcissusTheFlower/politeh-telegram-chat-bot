@@ -12,8 +12,8 @@ import org.lev.utils.PropertiesLoader;
 public class ActorInit {
 
     private static TransportClient transportClient = new HttpTransportClient();
-    protected static VkApiClient vk = new VkApiClient(transportClient);
-    protected static UserActor actor;
+    public static VkApiClient vk = new VkApiClient(transportClient);
+    public static UserActor actor;
 
     public static void authorizeVk() throws ClientException, ApiException {
         UserAuthResponse authResponse = vk.oAuth()
@@ -22,7 +22,8 @@ public class ActorInit {
                         System.getenv("VKSECRET"),
                         PropertiesLoader.getProperty("redirectUri"),
                         //https://oauth.vk.com/authorize?client_id=51450107&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,groups,wall&response_type=code&v=5.131
-                        "46a8cac717dc775131")
+                        //TODO hide this
+                        "7261ec9bef2717fd33")
                 .execute();
      actor = new UserActor(authResponse.getUserId(), authResponse.getAccessToken());
     }

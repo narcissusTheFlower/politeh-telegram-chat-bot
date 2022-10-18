@@ -15,6 +15,5 @@ public class Main {
         BotProperties.setBotProperties();
         BotInit.registerBot();
         ActorInit.authorizeVk();
-        //VkService.getPostsFromWall();
     }
 }
