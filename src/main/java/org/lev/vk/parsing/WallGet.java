@@ -6,7 +6,7 @@ import com.vk.api.sdk.objects.wall.GetFilter;
 import com.vk.api.sdk.objects.wall.responses.GetResponse;
 import org.lev.vk.ActorInit;
 
-public class ParsingMethods {
+public class WallGet {
 
     public static String jsonString;
 
@@ -14,8 +14,8 @@ public class ParsingMethods {
         GetResponse getResponse;
         try {
             getResponse = ActorInit.vk.wall().get(ActorInit.actor)
-                    .ownerId(groupId) //main group
-                    //.ownerId(-216521484)
+                    //.ownerId(groupId) //main group
+                    .ownerId(-216521484)
                     .count(2)
                     .offset(0)
                     .filter(GetFilter.ALL)

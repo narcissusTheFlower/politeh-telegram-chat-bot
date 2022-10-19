@@ -17,6 +17,7 @@ public class PolitehLongPollingBot extends TelegramLongPollingCommandBot {
         registerAll(BotMenuCommands.setAllMenuCommands().toArray(new IBotCommand[0]));
         try {
             execute(new SetMyCommands(BotMenuCommands.getMenu(),new BotCommandScopeDefault(),null));
+
             parsingThread.start();
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);

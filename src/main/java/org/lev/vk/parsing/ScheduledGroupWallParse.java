@@ -1,7 +1,10 @@
 package org.lev.vk.parsing;
 
+import org.lev.vk.parsing.alerting.NewPostAlert;
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static org.lev.vk.parsing.ParsedInfo.pojoMappedFromJson;
 
 public final class ScheduledGroupWallParse {
 
@@ -15,11 +18,15 @@ public final class ScheduledGroupWallParse {
     private final TimerTask repeatedTask = new TimerTask() {
         @Override
         public void run() {
-            ParsingMethods.getPostsFromVKGroup(-207600346);
-            ParsedInfo.mapToPojo();
-
-            //listenForNewPosts(ParsedInfo.lastParsedPostId);
+            WallGet.getPostsFromVKGroup(-207600346);
+            NewPostAlert.listenForNewPosts(
+                    ParsedInfo.extractInnerClassInfoFrom(
+                            pojoMappedFromJson()
+                    )
+            );
         }
     };
+
+
 }
 

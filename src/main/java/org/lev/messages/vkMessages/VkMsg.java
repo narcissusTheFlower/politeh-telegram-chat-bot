@@ -1,4 +1,4 @@
-package org.lev.messages;
+package org.lev.messages.vkMessages;
 
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 

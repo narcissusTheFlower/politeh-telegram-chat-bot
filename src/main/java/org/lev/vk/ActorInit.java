@@ -23,7 +23,7 @@ public class ActorInit {
                         PropertiesLoader.getProperty("redirectUri"),
                         //https://oauth.vk.com/authorize?client_id=51450107&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,groups,wall&response_type=code&v=5.131
                         //TODO hide this
-                        "7261ec9bef2717fd33")
+                        "da1e3681ceaffccac3")
                 .execute();
      actor = new UserActor(authResponse.getUserId(), authResponse.getAccessToken());
     }
