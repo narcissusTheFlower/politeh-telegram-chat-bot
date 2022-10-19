@@ -1,8 +1,6 @@
 package org.lev.vk.DTO;
 
-import lombok.Getter;
 import java.util.List;
-
 
 public class WallDTO {
 

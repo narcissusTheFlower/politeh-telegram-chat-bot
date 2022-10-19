@@ -6,7 +6,7 @@ public class NewPostAlert{
 
     private static Integer lastPostId;
 
-    public static void listenForNewPosts(Integer parsedPostId){
+    public static void listenForNewPostsById(Integer parsedPostId){
         if (lastPostId == null){
             lastPostId = parsedPostId;
         }else if (!(lastPostId.equals(parsedPostId))){

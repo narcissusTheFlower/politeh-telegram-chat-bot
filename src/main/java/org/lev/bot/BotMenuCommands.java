@@ -19,8 +19,8 @@ public class BotMenuCommands {
                 new BotApiMethodReplyCommand<>("/info", "Общая информация по учебе", InfoMsg.class),
                 new BotApiMethodReplyCommand<>("/teachers", "Преподаватели и их контакты", TeachersMsg.class),
                 new PartialBotApiMethodReplyCommand<>("/plan", "Расписание всех сессий", PlanMsg.class),
-                new BotApiMethodReplyCommand<>("/links", "Полезные ссылки", LinksMsg.class),
-                new BotApiMethodReplyCommand<>("/vk", "Вывести последний пост группы ВК Сергея", VkMsg.class)
+                new BotApiMethodReplyCommand<>("/links", "Полезные ссылки", LinksMsg.class)
+                //new BotApiMethodReplyCommand<>("/vk", "Вывести последний пост группы ВК Сергея", VkMsg.class)
         );
     }
 

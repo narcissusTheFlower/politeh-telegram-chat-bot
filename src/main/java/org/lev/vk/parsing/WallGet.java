@@ -14,8 +14,8 @@ public class WallGet {
         GetResponse getResponse;
         try {
             getResponse = ActorInit.vk.wall().get(ActorInit.actor)
-                    //.ownerId(groupId) //main group
-                    .ownerId(-216521484)
+                    .ownerId(groupId) //segrei vk group, its passed from above
+                   // .ownerId(-216521484) //my vk group
                     .count(2)
                     .offset(0)
                     .filter(GetFilter.ALL)

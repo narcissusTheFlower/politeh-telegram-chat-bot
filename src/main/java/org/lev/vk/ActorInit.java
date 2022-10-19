@@ -18,12 +18,12 @@ public class ActorInit {
     public static void authorizeVk() throws ClientException, ApiException {
         UserAuthResponse authResponse = vk.oAuth()
                 .userAuthorizationCodeFlow(
-                        Integer.valueOf(System.getenv("VKCLIENTID")),
-                        System.getenv("VKSECRET"),
+                       VkApiProperties.getVK_CLIENT_ID(),
+                       VkApiProperties.getVK_SECRET(),
                         PropertiesLoader.getProperty("redirectUri"),
                         //https://oauth.vk.com/authorize?client_id=51450107&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,groups,wall&response_type=code&v=5.131
-                        //TODO hide this
-                        "da1e3681ceaffccac3")
+                        //TODO hide this CODE
+                        "d2e6ad2a61a5a936c7")// TODO hide this System.getenv("VK_CODE")
                 .execute();
      actor = new UserActor(authResponse.getUserId(), authResponse.getAccessToken());
     }
