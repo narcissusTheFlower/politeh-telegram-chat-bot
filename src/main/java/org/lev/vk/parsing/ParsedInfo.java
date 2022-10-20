@@ -2,6 +2,8 @@ package org.lev.vk.parsing;
 
 import com.google.gson.Gson;
 import org.lev.vk.DTO.WallDTO;
+import org.lev.vk.apiMethods.WallGetRequest;
+
 import java.util.List;
 
 public class ParsedInfo {
@@ -11,12 +13,12 @@ public class ParsedInfo {
     public static WallDTO parsedPojo;
     public static Integer jsonParsedPostId;
 
-    public static void pojoMappedFromJson(){
-        parsedPojo = new Gson().fromJson(WallGet.jsonString, WallDTO.class);
+    public static void returnPojoMappedFromJson(){
+        parsedPojo = new Gson().fromJson(WallGetRequest.jsonString, WallDTO.class);
         System.out.println("Mapped pojo: " + parsedPojo);
     }
 
-    public static void extractInnerClassInfoFrom(){
+    public static void extractInnerClassInfoFromPojo(){
        List<WallDTO.Items> innerClassInfo = parsedPojo.getItems();
        lastPost = innerClassInfo.get(1);
        jsonParsedPostId = lastPost.getId();
