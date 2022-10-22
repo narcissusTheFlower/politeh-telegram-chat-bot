@@ -7,8 +7,7 @@ import org.lev.bot.BotProperties;
 import org.lev.utils.PropertiesLoader;
 import org.lev.vk.ActorInit;
 
-
-public class Main {
+public class ApplicationMain {
 
     public static void main(String[] args) throws ClientException, ApiException {
         PropertiesLoader.loadBotProperties("application.properties");

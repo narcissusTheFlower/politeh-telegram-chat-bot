@@ -27,5 +27,11 @@ public final class EmojiFactory {
     public static String getExclamation(){
         return EmojiParser.parseToUnicode(":exclamation:");
     }
+    public static String getClock4(){
+        return EmojiParser.parseToUnicode(":clock4:");
+    }
+    public static String getEnvelopeWithArrow(){
+        return EmojiParser.parseToUnicode(":envelope_with_arrow:");
+    }
 
 }

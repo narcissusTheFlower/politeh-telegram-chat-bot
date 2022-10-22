@@ -3,7 +3,7 @@ package org.lev.vk.parsing;
 import com.vk.api.sdk.objects.wall.GetFilter;
 import org.lev.vk.VkApiProperties;
 import org.lev.vk.apiMethods.WallGetRequest;
-import org.lev.vk.parsing.alerting.NewPostListener;
+import org.lev.vk.parsing.alerting.PostListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import static org.lev.vk.parsing.ParsedInfo.returnPojoMappedFromJson;
@@ -29,7 +29,7 @@ public final class ScheduledGroupWallParse {
             );
             returnPojoMappedFromJson();
             ParsedInfo.extractInnerClassInfoFromPojo();
-            NewPostListener.listenForNewPostsById(ParsedInfo.jsonParsedPostId);
+            PostListener.listenForNewPostsById(ParsedInfo.jsonParsedPostId);
         }
     };
 

@@ -2,7 +2,8 @@ package org.lev.vk.parsing.alerting;
 
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 
-public class NewPostListener {
+public class PostListener {
+
 
     private static Integer lastPostId;
 

@@ -1,13 +1,15 @@
 plugins {
     id 'java'
+    id 'application'
 }
 
 group 'org.lev'
-version '1.0'
+version '1'
 
 repositories {
     mavenCentral()
 }
+mainClassName = 'org.lev.ApplicationMain'
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
@@ -15,11 +17,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.24'
     implementation 'com.google.code.gson:gson:2.9.1'
     implementation group: 'org.telegram', name: 'telegrambots', version: '6.1.0'
-    implementation group: 'org.telegram', name: 'telegrambotsextensions',version: '6.1.0'
+    implementation group: 'org.telegram', name: 'telegrambotsextensions', version: '6.1.0'
     implementation group: 'com.vk.api', name: 'sdk', version: '1.0.9'
     implementation group: 'com.github.yvasyliev', name: 'java-vk-bots-longpoll-api', version: '3.5.1'
     implementation 'com.vdurmont:emoji-java:5.1.1'
-    implementation 'org.slf4j:slf4j-api:2.0.3'
 }
 
 test {

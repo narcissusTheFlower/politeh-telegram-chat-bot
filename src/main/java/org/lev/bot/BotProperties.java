@@ -21,10 +21,10 @@ public class BotProperties {
     }
 
     private static void setBotToken() {
-        BotProperties.botToken = System.getenv("TESTTOKEN");
+        BotProperties.botToken = System.getenv("BOT_TOKEN");
     }
 
     private static void setBotName() {
-        BotProperties.botName = System.getenv("TESTNAME");
+        BotProperties.botName = System.getenv("BOT_USERNAME");
     }
 }
