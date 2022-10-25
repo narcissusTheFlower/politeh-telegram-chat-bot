@@ -10,6 +10,8 @@ repositories {
     mavenCentral()
 }
 mainClassName = 'org.lev.ApplicationMain'
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'

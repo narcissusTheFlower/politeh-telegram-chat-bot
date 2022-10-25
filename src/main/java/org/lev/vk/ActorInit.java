@@ -21,7 +21,7 @@ public class ActorInit {
                        VkApiProperties.getVkClientId(),
                        VkApiProperties.getVkSecret(),
                         PropertiesLoader.getProperty("redirectUri"),
-                        VkApiProperties.getVkCode())
+                         VkApiProperties.getVkCode())
                 .execute();
      actor = new UserActor(authResponse.getUserId(), authResponse.getAccessToken());
     }
