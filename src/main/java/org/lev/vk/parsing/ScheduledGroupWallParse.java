@@ -1,18 +1,20 @@
 package org.lev.vk.parsing;
 
-import com.vk.api.sdk.objects.wall.GetFilter;
 import org.lev.vk.VkApiProperties;
-import org.lev.vk.apiMethods.WallGetRequest;
-import org.lev.vk.parsing.alerting.PostListener;
+import org.lev.vk.parsing.DTO.StableVkGroup;
+import org.lev.vk.parsing.DTO.VkGroupDTO;
 import java.util.Timer;
 import java.util.TimerTask;
-import static org.lev.vk.parsing.ParsedInfo.returnPojoMappedFromJson;
 
 public final class ScheduledGroupWallParse {
 
+
+    //-216521484 my vk group
+    //-207600346 serega vk group
     private final Long delay = 0L;
     private final Long period = 5000L;
-
+    private StableVkGroup stableVkGroup = new StableVkGroup("OUR_VK_GROUP",-216521484);
+    private StableVkGroup testkGroup = new StableVkGroup("testGroup",-216696601);
     public void parseGroupWalls() {
         new Timer().schedule(repeatedTask, delay, period);
     }
@@ -20,16 +22,8 @@ public final class ScheduledGroupWallParse {
     private final TimerTask repeatedTask = new TimerTask() {
         @Override
         public void run() {
-            new WallGetRequest(
-                    VkApiProperties.getVK_GROUP_ID(),
-                    2,
-                    0,
-                    GetFilter.ALL,
-                    true
-            );
-            returnPojoMappedFromJson();
-            ParsedInfo.extractInnerClassInfoFromPojo();
-            PostListener.listenForNewPostsById(ParsedInfo.jsonParsedPostId);
+            new ParseCycle(stableVkGroup).initCycle();
+            new ParseCycle(testkGroup).initCycle();
         }
     };
 

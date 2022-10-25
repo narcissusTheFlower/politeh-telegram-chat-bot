@@ -8,10 +8,10 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public class SendAlert extends DefaultAbsSender {
 
-    protected SendAlert(DefaultBotOptions options) {
+    public SendAlert(DefaultBotOptions options, String groupName) {
         super(options);
         try {
-            execute(new AutomaticVkMsg());
+            execute(new AutomaticVkMsg(groupName));
         } catch (TelegramApiException e) {
             throw new RuntimeException(e);
         }

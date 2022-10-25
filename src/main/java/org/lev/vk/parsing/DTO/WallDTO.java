@@ -1,4 +1,4 @@
-package org.lev.vk.DTO;
+package org.lev.vk.parsing.DTO;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ public class WallDTO {
     }
 
     public class Items{
+        public Long date;
         public Integer id;
         public String text;
 
@@ -20,6 +21,10 @@ public class WallDTO {
 
         public String getText() {
             return text;
+        }
+
+        public Long getDate() {
+            return date;
         }
 
         @Override
