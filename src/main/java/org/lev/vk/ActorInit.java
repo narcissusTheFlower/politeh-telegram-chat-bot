@@ -21,9 +21,7 @@ public class ActorInit {
                        VkApiProperties.getVkClientId(),
                        VkApiProperties.getVkSecret(),
                         PropertiesLoader.getProperty("redirectUri"),
-                        //https://oauth.vk.com/authorize?client_id=51450107&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=offline,groups,wall&response_type=code&v=5.131
-                        "efe674e8c92e395ef5")
-                //VkApiProperties.getVK_CODE()
+                        VkApiProperties.getVkCode())
                 .execute();
      actor = new UserActor(authResponse.getUserId(), authResponse.getAccessToken());
     }

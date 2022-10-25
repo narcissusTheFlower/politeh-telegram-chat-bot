@@ -1,6 +1,7 @@
 package org.lev.messages.vkMessages;
 
 import org.lev.utils.EmojiFactory;
+import org.lev.vk.VkApiProperties;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 import java.util.Date;
@@ -19,6 +20,6 @@ public class AutomaticVkMsgGeneralGroup extends SendMessage {
             //PropertiesLoader.getProperty("ourGroup"); TODO does not work for some reason
 
     public AutomaticVkMsgGeneralGroup() {
-        super("-882685877", ALERT_MSG);
+        super(VkApiProperties.getTelegramChatId(), ALERT_MSG);
     }
 }
