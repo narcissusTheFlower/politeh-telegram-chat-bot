@@ -10,8 +10,6 @@ import org.slf4j.LoggerFactory;
 
 public class WallGetRequest {
 
-    private static Logger logger = LoggerFactory.getLogger(WallGetRequest.class);
-
     private Integer count = 2;
     private Integer offset = 0;
     private GetFilter filter = GetFilter.ALL;
