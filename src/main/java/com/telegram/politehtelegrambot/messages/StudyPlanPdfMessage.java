@@ -34,7 +34,7 @@ public class StudyPlanPdfMessage extends SendMessage{
 
      }
 
-    // WTF Sptring, but works
+    // WTF Spring, but works
     @Autowired
      public void setPdfStatic(@Value("${pdfLink}") String pdfURL){
         staticPdfUrl = pdfURL;

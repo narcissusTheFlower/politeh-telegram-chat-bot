@@ -1,5 +1,6 @@
 package com.telegram.politehtelegrambot.telegram.bot;
 
+import com.telegram.politehtelegrambot.commands.MuteCommand;
 import com.telegram.politehtelegrambot.commands.PlanCommand;
 import com.telegram.politehtelegrambot.commands.StaticReplyCommand;
 import com.telegram.politehtelegrambot.messages.*;

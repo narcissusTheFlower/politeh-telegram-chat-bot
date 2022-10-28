@@ -15,7 +15,7 @@ public class PlanCommand extends BotCommand {
         super(commandIdentifier, description);
     }
 
-    @Autowired
+
     @Override
     public void execute(AbsSender absSender, User user, Chat chat, String[] arguments) {
         try{
