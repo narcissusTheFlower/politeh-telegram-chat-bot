@@ -3,8 +3,6 @@ package org.lev.messages;
 import org.lev.utils.PropertiesLoader;
 import org.telegram.telegrambots.meta.api.methods.send.SendMediaGroup;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
-
-import java.io.File;
 import java.util.List;
 
 public class PlanMsg extends SendMediaGroup {

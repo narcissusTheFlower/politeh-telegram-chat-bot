@@ -1,6 +1,7 @@
-FROM openjdk:17-jdk-alpine
-MAINTAINER lev
+FROM gradle:jdk17-jammy
+WORKDIR /home
+ADD . /home
 EXPOSE 8080
-ADD build/libs/TelegramBot-1.jar TelegramBot-1.jar
-ENTRYPOINT ["java","-jar","TelegramBot-1.jar"]
+RUN gradle clean build
+ENTRYPOINT ["/bin/bash"]
 

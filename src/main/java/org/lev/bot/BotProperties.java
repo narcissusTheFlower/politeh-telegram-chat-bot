@@ -1,7 +1,5 @@
 package org.lev.bot;
 
-
-
 public class BotProperties {
 
     private static String botToken;

@@ -1,11 +1,9 @@
 package org.lev.messages.vkMessages;
 
 import org.lev.utils.EmojiFactory;
-import org.lev.utils.PropertiesLoader;
 import org.lev.vk.VkApiProperties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+
 import java.util.Date;
 
 public class AutomaticVkMsgOurGroup extends SendMessage {

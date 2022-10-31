@@ -1,7 +1,6 @@
 package org.lev.vk.parsing.DTO;
 
 import java.util.List;
-
 public class WallDTO {
 
     public List<Items> items;

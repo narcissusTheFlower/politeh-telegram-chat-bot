@@ -1,12 +1,8 @@
 package org.lev.messages;
 
-import lombok.NonNull;
 import org.lev.utils.DaysTillSessionCounter;
 import org.lev.utils.EmojiFactory;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
-import org.telegram.telegrambots.meta.api.objects.MessageEntity;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboard;
-import java.util.List;
 
 public class HelpMsg extends SendMessage {
 

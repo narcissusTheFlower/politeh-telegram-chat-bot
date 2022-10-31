@@ -1,10 +1,8 @@
 package org.lev.bot;
 
 import org.lev.commands.BotApiMethodReplyCommand;
-import org.lev.commands.PartialBotApiMethodReplyCommand;
 import org.lev.messages.*;
-import org.lev.messages.PlanMsg;
-import org.lev.messages.vkMessages.VkMsg;
+import org.lev.commands.PartialBotApiMethodReplyCommand;
 import org.telegram.telegrambots.meta.api.objects.commands.BotCommand;
 import org.telegram.telegrambots.extensions.bots.commandbot.commands.IBotCommand;
 import java.util.ArrayList;

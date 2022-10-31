@@ -5,8 +5,6 @@ import com.vk.api.sdk.exceptions.ClientException;
 import com.vk.api.sdk.objects.wall.GetFilter;
 import com.vk.api.sdk.objects.wall.responses.GetResponse;
 import org.lev.vk.ActorInit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class WallGetRequest {
 

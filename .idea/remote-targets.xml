@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="RemoteTargetsManager">
+    <targets>
+      <target name="root@85.193.88.116:22" type="ssh/sftp" uuid="14cbc067-e6ca-41c1-8f57-3be1a607fdf9">
+        <config>
+          <option name="projectRootOnTarget" value="/root/TelegramBot" />
+          <option name="serverName" value="root@85.193.88.116:22 password" />
+        </config>
+        <ContributedStateBase type="GradleRuntime">
+          <config />
+        </ContributedStateBase>
+      </target>
+    </targets>
+  </component>
+</project>

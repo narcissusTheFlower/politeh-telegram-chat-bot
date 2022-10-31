@@ -9,7 +9,17 @@ version '1'
 repositories {
     mavenCentral()
 }
-mainClassName = 'org.lev.ApplicationMain'
+
+mainClassName = 'org.lev.ApplicationMainClass'
+
+jar {
+    manifest {
+        attributes(
+                'Main-Class': mainClassName
+        )
+    }
+
+}
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
@@ -25,6 +35,7 @@ dependencies {
     implementation group: 'com.vk.api', name: 'sdk', version: '1.0.9'
     implementation group: 'com.github.yvasyliev', name: 'java-vk-bots-longpoll-api', version: '3.5.1'
     implementation 'com.vdurmont:emoji-java:5.1.1'
+
 }
 
 test {

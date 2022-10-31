@@ -2,7 +2,6 @@ package org.lev.vk.parsing;
 
 import org.lev.vk.VkApiProperties;
 import org.lev.vk.parsing.DTO.VkGroupDTO;
-
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -13,7 +12,7 @@ public final class ScheduledGroupWallParse {
     private final Long period = 5000L;
 
     private final static Map<String,VkGroupDTO> mapOfParsedGroups = Map.of(
-            "ourVkGroup", new VkGroupDTO("ourVkGroup",VkApiProperties.getOurVkGroupId()),
+            "ourVkGroup", new VkGroupDTO("ourVkGroup", VkApiProperties.getOurVkGroupId()),
             "generalVkGroup", new VkGroupDTO("generalVkGroup",VkApiProperties.getGeneralVkGroupId())
     );
 

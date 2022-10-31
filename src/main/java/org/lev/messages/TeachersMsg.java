@@ -1,8 +1,8 @@
 package org.lev.messages;
 
-import org.lev.utils.DaysTillSessionCounter;
 import org.lev.utils.EmojiFactory;
 import org.lev.utils.PropertiesLoader;
+import org.lev.utils.DaysTillSessionCounter;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
 public class TeachersMsg extends SendMessage {
